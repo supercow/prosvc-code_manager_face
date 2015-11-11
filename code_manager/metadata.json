@@ -1,0 +1,14 @@
+{
+  "name": "puppetlabs-code_manager",
+  "version": "0.1.0",
+  "author": "puppetlabs",
+  "summary": "Face to allow Puppet to deploy using code_manager",
+  "license": "Apache-2.0",
+  "source": "http://github.com/puppetlabs/puppet-code_manager",
+  "project_page": "http://github.com/puppetlabs/puppet-code_manager",
+  "issues_url": "http://github.com/puppetlabs/puppet-code_manager",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ]
+}
+
