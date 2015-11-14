@@ -14,7 +14,7 @@ DESCRIPTION
   # ...
 
   action :startall do
-    summary "Start a deploy of all environments"
+    summary "Start a deploy of all environments."
     when_invoked do |options|
       "code-manager startall"
     end
@@ -26,11 +26,6 @@ DESCRIPTION
 
     post_data = {}
 
-    option '--all' do
-      summary "Start a deploy of all environments."
-      default_to { false }
-    end
-
     option '--wait' do
       summary "Wait for the code-manager service to return."
       default_to { false }
@@ -38,10 +33,6 @@ DESCRIPTION
 
     when_invoked do |environment, options|
       #[...]
-      if options[:all]
-        puts "invoked with all"
-        post_data [:all] = true
-      end
       if options[:wait]
         puts "invoked with wait"
         post_data [:wait] = true
