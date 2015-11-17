@@ -20,15 +20,25 @@ DESCRIPTION
 
     post_data = {:all => true}
 
-    option '--wait' do
+    option '-w', '--wait' do
       summary "Wait for the code-manager service to return."
       default_to { false }
     end
 
+    option '-s SERVER', '--cmserver SERVER' do
+      summary "Code manager server name"
+      default_to {  }
+    end
+
+    option '-p PORT', '--cmport PORT' do
+      summary "Code manager port on server"
+      default_to { nil }
+    end
+
+
     when_invoked do |options|
       #[...]
       if options[:wait]
-        puts "invoked with wait"
         post_data [:wait] = true
       end
       deploy_call = DeployCall.new(post_data)
@@ -65,7 +75,8 @@ DESCRIPTION
 end
 
 class DeployCall
-  def initialize(post_data)
+  def initialize(post_data, server = nil, port = nil)
+    Puppet.settings.preferred_run_mode = "master"
     @post_data = post_data
     @token = File.read( File.join(Dir.home, '.puppetlabs', 'token')).chop
     @code_manager_host = 'localhost'
@@ -76,7 +87,7 @@ class DeployCall
     #@code_manager_host = 'graynoise.konfuzo.net'
     #@code_manager_port = 80
     #@code_manager_path = 'nobody.txt'
-    #require 'pry'; binding.pry
+    require 'pry'; binding.pry
     @uri = URI(@code_manager_all)
     @http = Net::HTTP.new(@uri.host, @uri.port)
     @request = Net::HTTP::Post.new(@uri.request_uri, {'Content-Type' =>'application/json'})
@@ -97,6 +108,7 @@ class DeployCall
         " and code_manager_all = #{@code_manager_all} \n"\
         " and uri.path = #{@uri.path} \n"\
         " and response = #{@response.body} \n"\
+        " and Puppet[:ca_server] = #{Puppet[:ca_server]}"
         #" and token = #{@token}"
   end
 end
