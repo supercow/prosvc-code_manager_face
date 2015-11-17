@@ -9,4 +9,4 @@
 # Learn more about module testing here:
 # http://docs.puppetlabs.com/guides/tests_smoke.html
 #
-include code_manager
+include code_manager_face
