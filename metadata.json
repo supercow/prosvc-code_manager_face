@@ -8,7 +8,7 @@
   "project_page": "http://github.com/puppetlabs/puppet-code_manager_face",
   "issues_url": "http://github.com/puppetlabs/puppet-code_manager_face",
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+    {}
   ]
 }
 
