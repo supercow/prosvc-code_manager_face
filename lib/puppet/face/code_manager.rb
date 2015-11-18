@@ -7,12 +7,13 @@ require 'uri'
 
 Puppet::Face.define(:code_manager, '0.1.0') do
   description <<-DESCRIPTION
-The code_manager face is used to interact with the code-manager service.
+The code_manager face is used to interact with the code-manager service to 
+deploy environments.
 DESCRIPTION
-  summary "Used to work with the code-manager service"
+  summary "Used to work with the code-manager service to deploy environments"
   copyright "Puppet Labs", 2015
   author "puppetlabs"
-  notes "There is a lot to say about code-manager."
+  notes "No notes at this time."
 
   action :startall do
     summary "Start a deploy of all environments."
