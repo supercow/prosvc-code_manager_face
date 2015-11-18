@@ -94,7 +94,7 @@ class DeployCall
     if File.file?(token_file)
       token = File.read(token_file).gsub('\n','')
     else
-      raise "Token file does not exist."
+      raise "Token file does not exist or is not readable."
     end
 
     Puppet.settings.preferred_run_mode = "master"
@@ -109,6 +109,7 @@ class DeployCall
     request = Net::HTTP::Post.new(uri.request_uri, {'Content-Type' =>'application/json'})
     request.body = @post_body.to_json
     response = http.request(request)
-    response.body
+    require 'pry'; binding.pry
+    JSON.pretty_generate(JSON.parse(response.body))
   end
 end
