@@ -18,7 +18,7 @@ DESCRIPTION
   action :startall do
     summary "Start a deploy of all environments."
 
-    post_body = {:all => true}
+    post_body = {"deploy-all" => true}
 
     option '-w', '--wait' do
       summary "Wait for the code-manager service to return"
@@ -73,7 +73,7 @@ DESCRIPTION
     end
 
     when_invoked do |environment, options|
-      post_body[:environments] = [ environment ]
+      post_body["environments"] = [ environment ]
       deploy_call = DeployCall.new(post_body, options)
       deploy_call.result
     end
