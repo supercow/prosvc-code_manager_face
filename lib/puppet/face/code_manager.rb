@@ -80,6 +80,7 @@ DESCRIPTION
   end
 end
 
+# Class to actually do the deploy call across multiple actions
 class DeployCall
   DEFAULT_CODE_MANAGER_PORT = 8170
   CODE_MANAGER_PATH = "code-manager/v1/deploys"
@@ -110,7 +111,6 @@ class DeployCall
     request = Net::HTTP::Post.new(uri.request_uri, {'Content-Type' =>'application/json'})
     request.body = @post_body.to_json
     response = http.request(request)
-    require 'pry'; binding.pry
     JSON.pretty_generate(JSON.parse(response.body))
   end
 end
