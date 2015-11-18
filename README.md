@@ -20,6 +20,7 @@ puppet.conf.
 
 ### start
 
+```
 USAGE: puppet code_manager start [-w | --wait]
 [-s SERVER | --cmserver SERVER]
 [-p PORT | --cmport PORT]
@@ -35,9 +36,11 @@ OPTIONS:
   -s SERVER | --cmserver SERVER  - Code manager server name
   -t TOKENFILE | --tokenfile TO  - File containing RBAC authorization token
   -w | --wait                    - Wait for the code-manager service to return.
+```
 
 ### startall
 
+```
 USAGE: puppet code_manager startall [-w | --wait]
 [-s SERVER | --cmserver SERVER]
 [-p PORT | --cmport PORT]
@@ -52,3 +55,4 @@ OPTIONS:
   -s SERVER | --cmserver SERVER  - Code manager server name
   -t TOKENFILE | --tokenfile TO  - File containing RBAC authorization token
   -w | --wait                    - Wait for the code-manager service to return
+```
