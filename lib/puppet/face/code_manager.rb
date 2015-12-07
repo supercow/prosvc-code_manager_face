@@ -102,15 +102,17 @@ class DeployCall
     Puppet.settings.preferred_run_mode = "master"
     code_manager_host = options[:cmserver] || Puppet[:ca_server]
     code_manager_port = options[:cmport] || DEFAULT_CODE_MANAGER_PORT
-    @code_manager_all = "http://#{code_manager_host}:#{code_manager_port}/#{CODE_MANAGER_PATH}?token=#{token}"
+    @code_manager_all = "https://#{code_manager_host}:#{code_manager_port}/#{CODE_MANAGER_PATH}?token=#{token}"
   end
 
   def result
     uri = URI(@code_manager_all)
     http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true if uri.scheme == 'https'
     request = Net::HTTP::Post.new(uri.request_uri, {'Content-Type' =>'application/json'})
     request.body = @post_body.to_json
     response = http.request(request)
     JSON.pretty_generate(JSON.parse(response.body))
   end
+
 end
