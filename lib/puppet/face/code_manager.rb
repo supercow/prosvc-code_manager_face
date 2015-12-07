@@ -94,7 +94,7 @@ class DeployCall
     token_file = options[:tokenfile] || File.join(Dir.home, '.puppetlabs', 'token')
 
     if File.file?(token_file)
-      token = File.read(token_file).gsub('\n','')
+      token = File.read(token_file).gsub(/\n+/,'')
     else
       raise "Token file does not exist or is not readable."
     end
