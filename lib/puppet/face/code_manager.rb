@@ -128,7 +128,7 @@ class DeployCall
       @cert_store = get_store(options[:ca_cert])
     end
 
-    Puppet.settings.preferred_run_mode = "agent"
+    Puppet.settings.preferred_run_mode = "user"
     code_manager_host = options[:cmserver] || Puppet[:server]
     code_manager_port = options[:cmport] || DEFAULT_CODE_MANAGER_PORT
 
